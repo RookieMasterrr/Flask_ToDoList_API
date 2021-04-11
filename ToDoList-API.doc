@@ -1,0 +1,1716 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:w="urn:schemas-microsoft-com:office:word"
+    xmlns="http://www.w3.org/TR/REC-html40">
+    <head><meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <style type="text/css">
+        table  
+        {  
+            border-collapse: collapse;
+            border: none;  
+            width: 100%;  
+        }  
+        td,tr  
+        {  
+            border: solid #CCC 1px;
+            padding:3px;
+            font-size:9pt;
+        } 
+        .codestyle{
+            word-break: break-all;
+            mso-highlight:rgb(252, 252, 252);
+            padding-left: 5px; background-color: rgb(252, 252, 252); border: 1px solid rgb(225, 225, 232);
+        }
+        img {
+            width:100;
+        }
+    </style>
+    <meta name=ProgId content=Word.Document>
+    <meta name=Generator content="Microsoft Word 11">
+    <meta name=Originator content="Microsoft Word 11">
+    <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+    <body><h1>全局错误码</h1><div style="margin-left:20px;"><table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th>错误码</th>
+<th>错误解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>注册格式错误</td>
+</tr>
+<tr>
+<td>2</td>
+<td>登陆格式错误</td>
+</tr>
+<tr>
+<td>3</td>
+<td>登录用户名或密码错误</td>
+</tr>
+<tr>
+<td>4</td>
+<td>未登录</td>
+</tr>
+<tr>
+<td>5</td>
+<td>请求增加的事项没有标题</td>
+</tr>
+<tr>
+<td>6</td>
+<td>事项ID不存在</td>
+</tr>
+<tr>
+<td>7</td>
+<td>查询结果为空</td>
+</tr>
+<tr>
+<td>8</td>
+<td>请求页面超出范围</td>
+</tr>
+<tr>
+<td>9</td>
+<td>没有查询历史记录</td>
+</tr>
+</tbody>
+</table></div><h1>2、用户相关</h1><div style="margin-left:0px;"><h2>2.1、用户注册</h2><div style="margin-left:0px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户注册接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/user/regist</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">必须使用JSON格式请求</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "id": 1,
+        "password": "aPassword",
+        "username": "aUsername"
+    },
+    "message": "Regist Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>用户ID(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h2>2.2、用户登录</h2><div style="margin-left:0px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户登录接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/user/login</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">username</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">必须使用JSON格式请求</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "token": "eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxNzQ5OTEzMiwiZXhwIjoxNjE3NTAyNzMyfQ.eyJpZCI6MSwidXNlcm5hbWUiOiIxIiwicGFzc3dvcmQiOiIxIn0.nsVSNb1Pno4s4NGC0zzY9i3iH63P-EnUi5eh0ajiIhdgG2n264gtQfp4NbiVOZCdg_4LMqeWP0sy3W2FH3OZWg",
+        "user": {
+            "password": "1",
+            "username": "1"
+        }
+    },
+    "message": "Login Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">string</td>
+<td>认证密钥</td>
+</tr>
+<tr>
+<td style="text-align: left;">user.password</td>
+<td style="text-align: left;">string</td>
+<td>用户密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">user.username</td>
+<td style="text-align: left;">string</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div></div><h1>3、待办事项相关</h1><div style="margin-left:0px;"><h2>3.1、删</h2><div style="margin-left:0px;"><h3>3.1.1、删除单个事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除单个事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/del_task/<int:id></code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>待办事项ID</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "done": false,
+        "end_time": "2019.1.2",
+        "id": 1,
+        "owner": 1,
+        "start_time": "2019.1.1",
+        "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+        "title": "Buy groceries"
+    },
+    "message": "Delete Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.1.2、删除所有已完成事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除所有已完成事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/del_all_done</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": true,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        },
+        {
+            "done": true,
+            "end_time": "2019.2.2",
+            "id": 2,
+            "owner": 1,
+            "start_time": "2019.2.1",
+            "state": "Need to find a good Python tutorial on the web",
+            "title": "Learn Python"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 3,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_3",
+            "title": "Test_title_3"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 4,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_33333",
+            "title": "Test_title_3"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 5,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Tsssss333",
+            "title": "Test_title_3"
+        }
+    ],
+    "message": "Delete Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.1.3、删除所有未完成</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除所有未完成事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/del_all_undone</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": false,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        },
+        {
+            "done": false,
+            "end_time": "2019.2.2",
+            "id": 2,
+            "owner": 1,
+            "start_time": "2019.2.1",
+            "state": "Need to find a good Python tutorial on the web",
+            "title": "Learn Python"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 3,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_3",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 4,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_33333",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 5,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Tsssss333",
+            "title": "Test_title_3"
+        }
+    ],
+    "message": "Delete Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div></div><h2>3.2、改</h2><div style="margin-left:0px;"><h3>3.2.1、将所有事项设为已办</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>将所有事项设为已办</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/set_all_done</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": "",
+    "message": "Change Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<p><strong>备注</strong> </p></div><h3>3.2.2、将所有事项设为待办</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>将所有事项设为待办</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/set_all_undone</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": "",
+    "message": "Change Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<p><strong>备注</strong> </p></div><h3>3.2.3、将一条事项设为已办</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>将一条事项设为已办</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/set_a_done/<int:id></code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>指定task</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "done": true,
+        "end_time": "2019.1.2",
+        "id": 1,
+        "owner": 1,
+        "start_time": "2019.1.1",
+        "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+        "title": "Buy groceries"
+    },
+    "message": "Change Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.2.4、将一条事项设为待办</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>将一条事项设为待办</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/set_a_undone/<int:id></code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>指定task</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "done": false,
+        "end_time": "2019.1.2",
+        "id": 1,
+        "owner": 1,
+        "start_time": "2019.1.1",
+        "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+        "title": "Buy groceries"
+    },
+    "message": "Change Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div></div><h2>3.3、增</h2><div style="margin-left:0px;"><h3>3.3.1、增</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>添加待办事项接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top//api/v1/add_task</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>待办事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>待办事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">必须使用JSON格式请求</td>
+</tr>
+<tr>
+<td style="text-align: left;">token在header中添加</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": {
+        "done": false,
+        "end_time": "2021.10.10",
+        "id": 7,
+        "owner": 2,
+        "start_time": "2021.4.4",
+        "state": "test_state",
+        "title": "test_title"
+    },
+    "message": "Add Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div></div><h2>3.4、查</h2><div style="margin-left:0px;"><h3>3.4.1、查看所有事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看所有事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/display_all_tasks?page=1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码，默认为1</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token要添加在headers中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": false,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        },
+        {
+            "done": false,
+            "end_time": "2019.2.2",
+            "id": 2,
+            "owner": 1,
+            "start_time": "2019.2.1",
+            "state": "Need to find a good Python tutorial on the web",
+            "title": "Learn Python"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 3,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_3",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 4,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_33333",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 5,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Tsssss333",
+            "title": "Test_title_3"
+        }
+    ],
+    "message": {
+        "current_page": 1,
+        "has_next?": false,
+        "has_prev": false,
+        "max_page": 1,
+        "peer_page": 5,
+        "total_data": 5
+    },
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">data.done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.current_page</td>
+<td style="text-align: left;">int</td>
+<td>当前页面</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_next?</td>
+<td style="text-align: left;">bool</td>
+<td>是否有下一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_prev</td>
+<td style="text-align: left;">bool</td>
+<td>是否有前一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.max_page</td>
+<td style="text-align: left;">int</td>
+<td>最大页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.peer_page</td>
+<td style="text-align: left;">int</td>
+<td>每一页有多少信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.total_data</td>
+<td style="text-align: left;">int</td>
+<td>信息总数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.4.2、查看所有待办事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看所有待办事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/display_all_undone_tasks?page=1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码，默认为1</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token要添加在headers中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": false,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        },
+        {
+            "done": false,
+            "end_time": "2019.2.2",
+            "id": 2,
+            "owner": 1,
+            "start_time": "2019.2.1",
+            "state": "Need to find a good Python tutorial on the web",
+            "title": "Learn Python"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 3,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_3",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 4,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_33333",
+            "title": "Test_title_3"
+        },
+        {
+            "done": false,
+            "end_time": "2019.3.2",
+            "id": 5,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Tsssss333",
+            "title": "Test_title_3"
+        }
+    ],
+    "message": {
+        "current_page": 1,
+        "has_next?": false,
+        "has_prev": false,
+        "max_page": 1,
+        "peer_page": 5,
+        "total_data": 5
+    },
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">data.done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.current_page</td>
+<td style="text-align: left;">int</td>
+<td>当前页面</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_next?</td>
+<td style="text-align: left;">bool</td>
+<td>是否有下一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_prev</td>
+<td style="text-align: left;">bool</td>
+<td>是否有前一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.max_page</td>
+<td style="text-align: left;">int</td>
+<td>最大页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.peer_page</td>
+<td style="text-align: left;">int</td>
+<td>每一页有多少信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.total_data</td>
+<td style="text-align: left;">int</td>
+<td>信息总数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.4.3、查看所有已办事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看所有已办事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/display_all_done_tasks?page=1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码，默认为1</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token要添加在headers中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": true,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        },
+        {
+            "done": true,
+            "end_time": "2019.2.2",
+            "id": 2,
+            "owner": 1,
+            "start_time": "2019.2.1",
+            "state": "Need to find a good Python tutorial on the web",
+            "title": "Learn Python"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 3,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_3",
+            "title": "Test_title_3"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 4,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Test_state_33333",
+            "title": "Test_title_3"
+        },
+        {
+            "done": true,
+            "end_time": "2019.3.2",
+            "id": 5,
+            "owner": 1,
+            "start_time": "2019.3.1",
+            "state": "Tsssss333",
+            "title": "Test_title_3"
+        }
+    ],
+    "message": {
+        "current_page": 1,
+        "has_next?": false,
+        "has_prev": false,
+        "max_page": 1,
+        "peer_page": 5,
+        "total_data": 5
+    },
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">data.done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.current_page</td>
+<td style="text-align: left;">int</td>
+<td>当前页面</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_next?</td>
+<td style="text-align: left;">bool</td>
+<td>是否有下一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_prev</td>
+<td style="text-align: left;">bool</td>
+<td>是否有前一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.max_page</td>
+<td style="text-align: left;">int</td>
+<td>最大页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.peer_page</td>
+<td style="text-align: left;">int</td>
+<td>每一页有多少信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.total_data</td>
+<td style="text-align: left;">int</td>
+<td>信息总数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.4.4、通过关键词查找事项</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>通过关键词查找事项</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:5000/api/v1/search_task/query?id=1&title=Buy groceries&state=Milk, Cheese, Pizza, Fruit, Tylenol&owner=1&end_time=2019.1.2&page=1</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">owner</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>事项所有者</td>
+</tr>
+<tr>
+<td style="text-align: left;">end_time</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>事项结束事件</td>
+</tr>
+<tr>
+<td style="text-align: left;">page</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码，默认为1</td>
+</tr>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token要添加在headers中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        {
+            "done": true,
+            "end_time": "2019.1.2",
+            "id": 1,
+            "owner": 1,
+            "start_time": "2019.1.1",
+            "state": "Milk, Cheese, Pizza, Fruit, Tylenol",
+            "title": "Buy groceries"
+        }
+    ],
+    "message": {
+        "current_page": 1,
+        "has_next?": false,
+        "has_prev": false,
+        "max_page": 1,
+        "peer_page": 5,
+        "total_data": 1
+    },
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">data.done</td>
+<td style="text-align: left;">bool</td>
+<td>是否完成</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.end_time</td>
+<td style="text-align: left;">string</td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.id</td>
+<td style="text-align: left;">int</td>
+<td>事项id(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.owner</td>
+<td style="text-align: left;">int</td>
+<td>事项作者(根据token自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.start_time</td>
+<td style="text-align: left;">string</td>
+<td>开始时间(系统自动生成)</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.state</td>
+<td style="text-align: left;">string</td>
+<td>事项内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">data.title</td>
+<td style="text-align: left;">string</td>
+<td>事项标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.current_page</td>
+<td style="text-align: left;">int</td>
+<td>当前页面</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_next?</td>
+<td style="text-align: left;">bool</td>
+<td>是否有下一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.has_prev</td>
+<td style="text-align: left;">bool</td>
+<td>是否有前一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.max_page</td>
+<td style="text-align: left;">int</td>
+<td>最大页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.peer_page</td>
+<td style="text-align: left;">int</td>
+<td>每一页有多少信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">message.total_data</td>
+<td style="text-align: left;">int</td>
+<td>信息总数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p></div><h3>3.4.5、查看查询历史记录</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>查看查询历史记录</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://ofeasl.top/api/v1/api/v1/history</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET</li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">token</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>登录认证</td>
+</tr>
+<tr>
+<td style="text-align: left;">token要添加在headers中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "data": [
+        "Search_All_Done",
+        "Search_All_Undone",
+        "Search_All_Undone",
+        "Search_All_Undone",
+        "Search_All_Done",
+        "Search_All_Done",
+        "Search_By_Query",
+        "Search_By_Query",
+        "Search_By_Query",
+        "Search_By_Query"
+    ],
+    "message": "Search Successfully",
+    "status": 0
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<p><strong>备注</strong> </p></div></div></div></body></html>
