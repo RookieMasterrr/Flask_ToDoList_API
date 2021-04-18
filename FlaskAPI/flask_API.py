@@ -211,20 +211,23 @@ def del_all_undone():
 # 新增task接口，返回data中带有新增的task
 @app.route("/api/v1/add_task",methods=["POST"])
 def add_task():
+    # token验证,没有用装饰器
     token_result = judge_token(request.headers)
     if token_result == False:
         return jsonify(return_Feedback(status=4,message="Have Not Login",data=""))
     user_id=token_result['id']
 
-
+    # 判断是否有标题
     if not request.json or not 'title' in request.json:
         return jsonify(return_Feedback(status=5,message="Not Title In Your Request",data=""))
     
+    # 当前时间
     year = (time.localtime(time.time()).tm_year)
     month = (time.localtime(time.time()).tm_mon)
     day = (time.localtime(time.time()).tm_mday)
     current_time = (str)(year)+"."+(str)(month)+"."+(str)(day)    
     
+    # 生成事项
     task={
         "id":tasks[-1]["id"]+1,
         "title":request.json["title"],
@@ -277,13 +280,13 @@ def set_a_undone_(id):
 # 将所有task设为已办
 @app.route("/api/v1/set_all_done",methods=["PUT"])
 def set_all_done_():
+    # token验证
     token_result = judge_token(request.headers)
     if token_result == False:
         return jsonify(return_Feedback(status=4,message="Have Not Login",data=""))
     user_id=token_result['id']
 
-
-
+    # 遍历即可
     for i in tasks:
         if i["owner"]==user_id:
             i["done"]=True
@@ -481,52 +484,59 @@ def display_undone_tasks():
 
 @app.route("/api/v1/search_task/query",methods=["GET"])
 def search_task():
+    # token验证
     token_result = judge_token(request.headers)
     if token_result == False:
         return jsonify(return_Feedback(status=4,message="Have Not Login",data=""))
     user_id=token_result['id']
 
+    # 查询记录添加到Redis中
     conn.append(user_id,"Search_By_Query/")
 
+    # 保存查找参数
     args_dict=request.args.to_dict()
     keys_list = list(args_dict.keys())
 
-
+    # 筛选满足条件的事项 
     user_tasks=[]
     for i in tasks:
+        # 首先筛选出当前用户,然后判断参数是否相等
         if (i["owner"] == user_id) and query(task=i, keys_list=keys_list, args_dict=args_dict):
+            # 满足条件就加到user_tasks中去
             user_tasks.append(i)
     if len(user_tasks)==0:
         return jsonify(return_Feedback(status=7,message="No Data",data=""))
     else:
         # 分页
+        # 总长度
         length=len(user_tasks)
+        # 每页含有多少信息
         peer_page=5
+        # 总共的页数
         max_page=ceil(length/peer_page)
-
-
+        
         current_page=0
+        # 如果用户没有page参数,就返回第一页
         if not "page" in request.args:
             current_page=1
         else:
             request_page=int(request.args["page"])
             current_page=request_page    
-
+        # 如果当前页面大于最大页数或者小于1,就返回错误
         if(current_page>max_page or current_page<1):
             return jsonify(return_Feedback(status=8,message="Page Out Of Index",data=""))
 
-
-
+        # 当前页面的第一个待办事项和最后一个待办事项
         low=((current_page-1)*peer_page+1)
         up=low+peer_page-1
 
+        # 添加到当前页面的事项列表中
         tasks_in_this_page=[]
         for index in range(low,up+1):
             if(index>length):
                 break
             tasks_in_this_page.append(user_tasks[index-1])
-
-
+        # 返回信息
         info={
             "current_page":current_page,
             "max_page":max_page,
@@ -539,32 +549,34 @@ def search_task():
 
 @app.route("/api/v1/history",methods=["GET"])
 def history():
+    # token验证
     token_result = judge_token(request.headers)
     if token_result == False:
         return jsonify(return_Feedback(status=4,message="Have Not Login",data=""))
     user_id=token_result['id']
 
     try:
+        # 将该用户的所有事项通过每一个事项结尾的/为分隔拆分为列表
         temp_list = conn.get(name=(str)(user_id)).split('/')
     except:
         return jsonify(return_Feedback(status=9,message="No History",data=""))
-    # print(temp_list)
-    print(len(temp_list))
 
+    # 列表长度
     list_length = len(temp_list)
-
+    # 历史记录(10个)
     historys = []
-
     aString = ""
-
-    # 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14
-
+    # 如果列表长度大于11
     if list_length>11:
         for i in range(list_length-11, list_length-1):
+            # 将最后10个添加到historys列表中
             historys.append(temp_list[i])
+            # 更新Redis数据库中的数据,防止过长
             aString+=temp_list[i]+"/"
-            conn.set(1,aString)
+        conn.set(1,aString)
+        # 讲historys翻转,最新的放在最前面
         historys.reverse()
+    # 如果小就把所有历史都返回
     else:
         for i in range(list_length-2,-1, -1):
             historys.append(temp_list[i])
@@ -572,6 +584,10 @@ def history():
     return jsonify(return_Feedback(status=0, message="Search Successfully",data=historys))
 
 def query(task,keys_list,args_dict):
+    """
+    传入参数:事项,查询的关键字和值
+    返回值:若该事项满足所有查询则返回True,否则返回False
+    """
     for i in keys_list:
         if (str)(task[i])!=args_dict[i]:
             return False
@@ -583,8 +599,10 @@ def query(task,keys_list,args_dict):
 #######################注册#########################
 @app.route("/api/v1/user/regist",methods=["POST"])
 def regist():
+    # 先判断用户是否已POST形式提交,以及是否有填写密码
     if not request.json or not "username" in request.json or not "password" in request.json:
         return jsonify(return_Feedback(status=1,message="Regist Form Error",data=""))
+    # 用户数量加1
     user_id = users[-1]['id']+1
     user_username = request.json['username']
     user_password = request.json['password']
@@ -594,7 +612,7 @@ def regist():
         'username' : user_username,
         'password' : user_password
     }
-
+    # 添加到用户列表
     users.append(user)
     return jsonify(return_Feedback(status=0,message="Regist Successfully",data=user))
 #######################注册#########################
@@ -605,12 +623,14 @@ def regist():
 # 登录接口
 @app.route("/api/v1/user/login",methods=["POST"])
 def login():
-    print(request.json)
+    # 判断是否是输入用户名和密码
     if not request.json or not "username" in request.json or not "password" in request.json:# 格式错误
         return jsonify(return_Feedback(status=2,message="Form Error",data=""))
-    for i in users:# 遍历用户列表
+    for i in users:# 遍历用户列表,查找是否有该用户
         if i["username"] == request.json["username"] and i["password"] == request.json["password"]:
-            return jsonify(return_Feedback(status=0,message="Login Successfully",data={"user":request.json,"token":get_token(user_id=i["id"],user_name=i["username"],user_pwd=i["password"])})) # 认证成功
+            # 返回登录成功和token验证
+            return jsonify(return_Feedback(status=0,message="Login Successfully",data={"user":request.json,
+            "token":get_token(user_id=i["id"],user_name=i["username"],user_pwd=i["password"])})) # 认证成功
     return jsonify(return_Feedback(status=3,message="Username Or Password Error",data=""))# 没有这个用户
     
 # 返回token
@@ -618,6 +638,7 @@ def get_token(user_id,user_name,user_pwd):
     s = Serializer(secret_key=app.config["SECRET_KEY"],expires_in=3600)
     token = s.dumps({"id":user_id,"username":user_name,"password":user_pwd}).decode("ascii")
     return token
+#######################登录#########################
 
 # 验证token
 def judge_token(headers):
